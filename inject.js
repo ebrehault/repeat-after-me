@@ -32,6 +32,7 @@
                     url: this._url,
                     method: this._method,
                     status: this.status,
+                    statusText: this.statusText,
                     headers: this._requestHeaders,
                     responseHeaders: responseHeaders,
                 };
@@ -41,7 +42,7 @@
 
                 if (this.responseType !== 'blob' && this.responseText) {
                     try {
-                        request.responseBody = JSON.parse(this.responseText);
+                        request.responseBody = this.responseText;
                     } catch(err) {
                         console.log(err);
                     }

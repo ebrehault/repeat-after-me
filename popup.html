@@ -1,10 +1,46 @@
 <!DOCTYPE html>
 <html>
+    <head>
+        <style>
+body {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    width: 400px;
+}
+.half {
+    display: flex;
+}
+.half > div {
+    width: 50%;
+    padding: 5px;
+}
+select {
+    width: 180px;
+}
+input {
+    width: 186px;
+}
+        </style>
+    </head>
     <body>
-        <button id="record-btn">Record</button>
-        <button id="stop-record-btn">Stop record</button>
-        <button id="play-btn">Play</button>
-        <button id="stop-play-btn">Stop play</button>
+        <h3>Repeat after me</h3>
+        <div class="half">
+            <div>
+                <input id="context-input" placeholder="Enter context name">
+            </div>
+            <div>
+                <button id="record-btn" disabled>Record</button>
+                <button id="stop-record-btn" disabled>Stop record</button>
+            </div>
+        </div>
+        <div class="half">
+            <div>
+                <select id="context-select"></select>
+            </div>
+            <div>
+                <button id="play-btn" disabled>Play</button>
+                <button id="stop-play-btn" disabled>Stop play</button>
+            </div>
+        </div>
         <script src="popup.js"></script>
     </body>
 </html>

@@ -13,7 +13,8 @@
 	},
 	"permissions": [
         "activeTab",
-        "background",
+		"background",
+		"debugger",
 		"storage",
 		"webRequest",
 		"webRequestBlocking",
