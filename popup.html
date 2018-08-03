@@ -19,10 +19,19 @@ select {
 input {
     width: 186px;
 }
+hr {
+    border-style: solid;
+    border-top: 0;
+}
+a, a:hover, a:visited {
+    color: lightgray;
+}
         </style>
     </head>
     <body>
         <h3>Repeat after me</h3>
+        <hr/>
+        <small>Will record all XHR requests in the given context.</small>
         <div class="half">
             <div>
                 <input id="context-input" placeholder="Enter context name">
@@ -32,6 +41,8 @@ input {
                 <button id="stop-record-btn" disabled>Stop record</button>
             </div>
         </div>
+        <hr/>
+        <small>Will replay recorded XHR requests by matching the exact request if recorded, or the closest match in order to produce a consistent response.</small>
         <div class="half">
             <div>
                 <select id="context-select"></select>
@@ -41,6 +52,8 @@ input {
                 <button id="stop-play-btn" disabled>Stop play</button>
             </div>
         </div>
+        <hr/>
+        <a href="https://github.com/ebrehault/repeat-after-me" target="_new">More informations</a>
         <script src="popup.js"></script>
     </body>
 </html>
