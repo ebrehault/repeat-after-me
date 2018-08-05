@@ -2,7 +2,7 @@
 	"name": "Repeat after me",
 	"version": "1.0.0",
 	"manifest_version": 2,
-	"description": "Record backend HTTP calls they can be replayed when backend is not available.",
+	"description": "Record backend HTTP calls and replay them when backend is not available.",
 	"background": {
 		"scripts": ["background.js"]
 	},

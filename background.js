@@ -68,6 +68,7 @@ function stopPlay() {
         chrome.debugger.sendCommand(debuggee, 'Network.setRequestInterceptionEnabled', { enabled: false });
     });
     chrome.debugger.onEvent.removeListener(rewriteResponse);
+    chrome.debugger.detach(debuggee);
 }
 
 function recordRequest(request) {
@@ -82,6 +83,7 @@ function loadRequests() {
     Object.keys(requests).forEach(id => {
         var request = requests[id];
         exactMatch[getExactKey(request)] = id;
+        nearMatch[getSimpleKey(request)] = id;
         nearMatch[getNearKey(request)] = id;
     });
 }
@@ -95,9 +97,17 @@ function getExactKey(request) {
     return JSON.stringify(key);
 }
 
-function getNearKey(request) {
+function getSimpleKey(request) {
     var key = {
         path: request.url.split('?')[0],
+        method: request.method,
+    };
+    return JSON.stringify(key);
+}
+
+function getNearKey(request) {
+    var key = {
+        path: getHost(request.url) + '/' + request.url.split('?')[0].split('/').splice(-1),
         method: request.method,
     };
     return JSON.stringify(key);
@@ -156,6 +166,9 @@ function rewriteResponse(source, method, params) {
 function getBestResponse(request) {
     var reqId;
     reqId = exactMatch[getExactKey(request)];
+    if (!reqId) {
+        reqId = nearMatch[getSimpleKey(request)];
+    }
     if (!reqId) {
         reqId = nearMatch[getNearKey(request)];
     }
